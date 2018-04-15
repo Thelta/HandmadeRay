@@ -9,9 +9,6 @@ void BMP::TurnImageToBMP(string filename, Image image)
 {
 	vector<Vector3<uint8_t>> pixels = image.GetPixels();
 
-	unordered_set<Vector3<uint8_t>, VECTOR3_UINT8_HASH> colorTable = image.GetColors();
-	
-
 	int bitmapColorBitCount = 32;
 
 	size_t bitmapOffset = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
@@ -31,7 +28,6 @@ void BMP::TurnImageToBMP(string filename, Image image)
 		0, 0 // biClrUsed, biClrImportant
 	};
 
-
 	WriteBMP(filename, &fileHeader, &infoHeader, *bitmapColors);
 	
 	for(auto color : *bitmapColors)
@@ -46,7 +42,7 @@ void BMP::CreateBitmapColors(vector<RGBQUAD*> *bitmapColors, vector<Vector3<uint
 {
 	for (auto color : colors)
 	{
-		bitmapColors->push_back(new RGBQUAD{ color.z, color.y, color.x, 0 });
+		bitmapColors->push_back(new RGBQUAD{ color.b(), color.g(), color.r(), 0 });
 	}
 }
 

@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	Image blue(1024, 1024);
+	Image blue(200, 100);
 
 	for (int y = 0; y < blue.GetHeight(); y++)
 	{
